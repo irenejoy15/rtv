@@ -239,8 +239,10 @@ class Migration_model extends CI_Model{
     }
 
     public function selectSorControl(){
-        $this->PBB->select('NextCreditMemo');
-        $query = $this->PBB->get('SorControl');
+        $this->PBB->select('KeyType');
+        $this->PBB->select('KeyNext');
+        $this->PBB->where('KeyType','CRNOTE');
+        $query = $this->PBB->get('SorNextKeys');
         return $query->row();
     }
 
@@ -277,7 +279,8 @@ class Migration_model extends CI_Model{
     }
 
     public function updateSorControl($data){
-        $update = $this->PBB->update('SorControl',$data);
+        $this->PBB->where('KeyType','CRNOTE');
+        $update = $this->PBB->update('SorNextKeys',$data);
         return $update;
     }
 

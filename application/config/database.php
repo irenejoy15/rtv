@@ -141,10 +141,10 @@ $db['default'] = array(
 
 $db['secondDb'] = array(
 	'dsn'	=> '',
-	'hostname' => '192.168.1.19',
+	'hostname' => '192.168.0.16',
 	'username' => 'Syspro',
 	'password' => 'Syspr0',
-	'database' => 'SysproCompanyT',
+	'database' => 'SysproCompanyV',
 	'dbdriver' => 'sqlsrv',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

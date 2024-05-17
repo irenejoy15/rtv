@@ -254,9 +254,9 @@ class Migration extends CI_Controller {
             }
         }   
         $SorControl = $this->Migration_model->selectSorControl();
-
+      
         //Sales Order
-        $NextCreditMemo = $SorControl->NextCreditMemo;
+        $NextCreditMemo = $SorControl->KeyNext;
         $salesOrder = str_pad($NextCreditMemo, 15, '0', STR_PAD_LEFT);
         
         //Update of Migration Status
@@ -269,16 +269,14 @@ class Migration extends CI_Controller {
            $this->Migration_model->update_migration($monitoring_id_sales,$data_sales_order);
         }
 
-         //SorControl Update Itaas Mo Ito
-         $NextCreditMemo_Increment = $SorControl->NextCreditMemo + 1;
-         $data_SorControl = array('NextCreditMemo'=>$NextCreditMemo_Increment);
-         
-         if($data_SorControl){
-            $this->Migration_model->updateSorControl($data_SorControl);
-         }
-        //  print_r($data_SorControl);
-
-      
+        //SorControl Update Itaas Mo Ito
+        $NextCreditMemo_Increment = $SorControl->KeyNext + 1;
+        $data_SorControl = array('KeyNext'=>$NextCreditMemo_Increment);
+        
+        if($data_SorControl){
+        $this->Migration_model->updateSorControl($data_SorControl);
+        }
+        
         $ArMultAddr = $this->Migration_model->selectArMultAddress($store_code);
        
         $Shipaddress1 = $ArMultAddr->ShipToAddr1;
@@ -478,8 +476,6 @@ class Migration extends CI_Controller {
         if($data_SorMaster){
           $this->Migration_model->insert_SorMaster($data_SorMaster);
         }
-
-      
 
         //SORDETAIL
         // echo '<br>SorDetail Insert <br>';
